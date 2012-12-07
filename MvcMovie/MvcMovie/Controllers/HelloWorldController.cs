@@ -8,9 +8,9 @@ namespace MvcMovie.Controllers
         //
         // GET: /HellWorld/
 
-        public string Index()
+        public ActionResult Index()
         {
-            return "This is my <b>Default</b> action...";
+            return View();
         }
 
         //

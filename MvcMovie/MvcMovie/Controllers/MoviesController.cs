@@ -112,8 +112,7 @@ namespace MvcMovie.Controllers
         }
 
         //
-        // POST: /Movies/SearchIndex?searchString=movieTitle
-
+        //  /Movies/SearchIndex?searchString=movieTitle
         public ActionResult SearchIndex(string searchString)
         {
             var movies = from m in db.Movies select m;

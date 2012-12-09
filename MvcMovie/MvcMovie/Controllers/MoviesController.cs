@@ -111,9 +111,11 @@ namespace MvcMovie.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult SearchIndex(string id)
+        //
+        // POST: /Movies/SearchIndex?searchString=movieTitle
+
+        public ActionResult SearchIndex(string searchString)
         {
-            string searchString = id;
             var movies = from m in db.Movies select m;
             if (!string.IsNullOrEmpty(searchString))
             {

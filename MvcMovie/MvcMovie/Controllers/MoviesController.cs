@@ -15,7 +15,7 @@ namespace MvcMovie.Controllers
 
         //
         // GET: /Movies/
-
+        [HttpGet]
         public ActionResult Index()
         {
             return View(db.Movies.ToList());
@@ -23,7 +23,7 @@ namespace MvcMovie.Controllers
 
         //
         // GET: /Movies/Details/5
-
+        [HttpGet]
         public ActionResult Details(int id = 0)
         {
             Movie movie = db.Movies.Find(id);
@@ -36,7 +36,8 @@ namespace MvcMovie.Controllers
 
         //
         // GET: /Movies/Create
-
+        
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -61,6 +62,7 @@ namespace MvcMovie.Controllers
         //
         // GET: /Movies/Edit/5
 
+        [HttpGet]
         public ActionResult Edit(int id = 0)
         {
             Movie movie = db.Movies.Find(id);
@@ -88,7 +90,7 @@ namespace MvcMovie.Controllers
 
         //
         // GET: /Movies/Delete/5
-
+        [HttpGet]
         public ActionResult Delete(int id = 0)
         {
             Movie movie = db.Movies.Find(id);
@@ -109,6 +111,18 @@ namespace MvcMovie.Controllers
             db.Movies.Remove(movie);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult SearchIndex(string searchString)
+        {
+            var movies = from m in db.Movies select m;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                movies = movies.where(s => s.Title.contains(searchString));
+            }
+
+            return View(movies);
         }
 
         protected override void Dispose(bool disposing)

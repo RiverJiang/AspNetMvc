@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MusicStore.Models;
 
 namespace MusicStore.Controllers
 {
@@ -13,7 +14,14 @@ namespace MusicStore.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var genres = new List<Genre>
+            {
+                new Genre{ Name ="Disco"},
+                new Genre{ Name ="Jazz" },
+                new Genre{ Name = "Rock"}
+            };
+
+            return View(genres);
         }
 
         //
@@ -21,15 +29,19 @@ namespace MusicStore.Controllers
 
         public ActionResult Browse()
         {
-            return View();
+            var genreModel = new Genre { Name = "genre" };
+
+            return View(genreModel);
         }
 
         //
         // GET: /Store/
 
-        public ActionResult Details()
+        public ActionResult Details(string id)
         {
-            return View();
+            var album = new Album { Title = "Album" + id };
+
+            return View(album);
         }
     }
 }

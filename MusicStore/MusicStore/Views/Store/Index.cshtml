@@ -5,30 +5,11 @@
 }
 
 <h2>Index</h2>
+<p>Select from @Model.Count() genres:</p>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink(item.Name, "Browse", new { genre =item.Name })
-            @*<a href="/Store/Browse?genre=@item.Name">@Html.DisplayFor(modelItem => item.Name)</a>*@
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
-
-</table>
+<ul>
+    @foreach (var genre in Model)
+    {
+       <li>@Html.ActionLink(genre.Name, "Browse", new { genre =genre.Name })</li> 
+    }
+</ul>
